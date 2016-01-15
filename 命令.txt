@@ -1,0 +1,8 @@
+rails g model NormalUser username:string name:string hashed_password:string age:integer sex:boolean school:string college:string profession:string work:string --force
+
+
+rails generate model Administrator username:string hashed_password:string salt:string is_admin:boolean --force
+
+
+
+创建管理员用户：rake db:seed

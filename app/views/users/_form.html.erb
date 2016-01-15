@@ -1,0 +1,58 @@
+<%= form_for(@user,html:{class:"form-inline"}) do |f| %>
+<% if @user.errors.any? %>
+  <div class="alert alert-block alert-error">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <h5>您填写的表单views/users有<%= @user.errors.count %>个错误需要修正：</h5>
+    <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :username,"登录用户名" %><br>
+    <%= f.text_field :username %>
+  </div>
+  <div class="field">
+    <%= f.label :name,"姓名" %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.text_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :sex,"性别" %><br>
+    <%= f.select :sex, [["男..",true],["女..",false]], include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :age,"年龄" %><br>
+    <%= f.text_field :age %>
+  </div>
+  <div class="field">
+    <%= f.label :school,"学校" %><br>
+    <%= f.text_field :school %>
+  </div>
+  <div class="field">
+    <%= f.label :college,"学院" %><br>
+    <%= f.text_field :college %>
+  </div>
+
+  <div class="field">
+    <%= f.label :profession,"专业" %><br>
+    <%= f.text_field :profession %>
+  </div>
+
+  <div class="field">
+    <%= f.label :work,"求职岗位1" %><br>
+    <%= f.text_field :work %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "提交",:class=> "btn btn-success" %>
+  </div>
+<% end %>

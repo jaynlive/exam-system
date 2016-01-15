@@ -1,0 +1,9 @@
+<h3>新建管理员账户</h3>
+<%= content_for :ext_nav_item do %>
+<li class="current">
+	<%= link_to "新建管理员账户",new_administrator_path %>
+</li>
+<% end %>
+<%= render 'form' %>
+
+<%= link_to 'Back', administrators_path %>

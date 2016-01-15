@@ -1,0 +1,54 @@
+<% if @user.errors.any? %>
+  <div class="alert alert-danger">
+    <h5>您填写的表单有<%= @user.errors.count %>个错误需要修正：</h5>
+    <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_tag(index_create_path) do %>
+    <table class="table">
+      <tr>
+        <td>用户名(登录名)</td>
+        <td><%= text_field_tag :username,@user.username,:class=>"form-control" %></td>
+      </tr>
+    	<tr>
+    		<td>姓名</td>
+    		<td><%= text_field_tag :name,@user.name,:class=>"form-control" %></td>
+    	</tr>
+    	<tr>
+    		<td>密码</td>
+    		<td><%= text_field_tag :password,'',:class=>"form-control" %></td>
+    	</tr>
+      <tr>
+        <td>性别</td>
+        <td><%= select_tag :sex,options_for_select([["男",true],["女",false]],@user.sex),:class=>"form-control",include_blank:true  %></td>
+      </tr>
+
+      <tr>
+        <td>年龄</td>
+        <td><%= text_field_tag :age,@user.age,:class=>"form-control" %></td>
+      </tr>
+      <tr>
+        <td>学校</td>
+        <td><%= text_field_tag :school,@user.school,:class=>"form-control" %></td>
+      </tr>
+      <tr>
+        <td>学院</td>
+        <td><%= text_field_tag :college,@user.college,:class=>"form-control" %></td>
+      </tr>
+    	<tr>
+        <td>专业</td>
+        <td><%= text_field_tag :profession,@user.profession,:class=>"form-control" %></td>
+      </tr>
+      <tr>
+        <td>应聘职位</td>
+        <td><%= text_field_tag :work,@user.work,:class=>"form-control" %></td>
+      </tr>
+      <tr>
+        <td colspan="2"><%= submit_tag "提  交",:class=>"btn btn-primary",remote:true %></td>
+      </tr>
+    </table>
+<% end %>

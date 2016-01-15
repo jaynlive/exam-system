@@ -1,0 +1,64 @@
+<table class="table">
+  <tr>
+    <td><strong>用户名:</strong></td>
+    <td><%= @user.username %></td>
+  </tr>
+  <tr>
+    <td><strong>姓名:</strong></td>
+    <td><%= @user.name %></td>
+  </tr>
+  <tr>
+    <td><strong>性别:</strong></td>
+    <td><%= sex_text @user.sex %></td>
+  </tr>
+  <tr>
+    <td><strong>年龄:</strong></td>
+    <td><%= @user.age %></td>
+  </tr>
+  <tr>
+    <td><strong>学校:</strong></td>
+    <td><%= @user.school %></td>
+  </tr>
+  <tr>
+    <td><strong>学院:</strong></td>
+    <td><%= @user.college %></td>
+  </tr>
+  <tr>
+    <td><strong>专业:</strong></td>
+    <td><%= @user.profession %></td>
+  </tr>
+  <tr>
+    <td><strong>岗位:</strong></td>
+    <td><%= @user.work %></td>
+  </tr>
+</table>
+  <h3>已参加的考试 </h3>
+
+<table class="table table-striped">
+  <thead>
+    <th>考试名称</th>
+    <th>简介</th>
+    <th>试题数量</th>
+    <th>平均难度</th>
+    <th>提供者</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <%  @exams.each do |exam| %>
+    <tr>
+      <td><%= exam.name %></td>
+      <td><%= exam.description %></td>
+      <td><%= exam.questions.size %></td>
+      <td><%= difficulty_level exam.average_difficulty %></td>
+      <td><%= exam.administrator.username %></td>
+      <td>
+      <% contest=Contest.where(exam_id:exam.id,user_id:params[:id]).first
+      %>
+      <%= mark_tag contest.mark %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to '编辑', edit_user_path(@user),:class => "btn btn-info" %>
+<%= link_to '返回', users_path,:class => "btn" %>
